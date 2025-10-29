@@ -14,10 +14,19 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 	) {
 		$erro = "Preencha todos os campos";
 	} else {
+		// Capturando e sanitizando os valores do formulário
 		$nome = Utils::sanitizar($_POST['nome']);
 		/* aqui no email ele pega os dois valores da função $valor e $tipoDeSanitizacao */
 		$email = Utils::sanitizar($_POST['email'], 'email');
 		$tipo = Utils::sanitizar($_POST['tipo']);
+
+		// Captuando e codificando (gerando um hash) da senha
+		$senha = Utils::codificarSenha($_POST['senha']);
+
+		// Criando um objeto para um novo usuario com seus dados 
+		$novoUsuario = new Usuario($nome, $email, $senha, $tipo);
+
+	    Utils::dump($novoUsuario);
 	}
 
 }

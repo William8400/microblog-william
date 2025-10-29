@@ -1,7 +1,7 @@
 <?php
 // src/Models/Usuario.php
 
-class Usuraio {
+class Usuario {
     private string $nome;
     private string $email;
     private string $senha;
@@ -38,7 +38,7 @@ class Usuraio {
         $this->tipo = $valorTipo;
     }
 
-    private function setId(string $valorId):void { 
+    private function setId(?int $valorId):void { 
         $this->id = $valorId;
     }
 }

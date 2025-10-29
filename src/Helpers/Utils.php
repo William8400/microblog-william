@@ -25,4 +25,10 @@ class Utils {
         return password_hash($valorSenha, PASSWORD_DEFAULT);
     }
 
+    public static function dump($dados):void{
+        echo '<pre>';
+        var_dump($dados);
+        echo '</pre>';
+    }
+
 }
