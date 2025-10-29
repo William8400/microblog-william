@@ -1,5 +1,6 @@
 <?php 
 require_once "../src/Models/Usuario.php";
+require_once "../src/Helpers/Utils.php";
 
 // Variável que será usada para montar mensagens de erro personalizadas 
 $erro = null;
@@ -13,12 +14,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 	) {
 		$erro = "Preencha todos os campos";
 	} else {
-		echo "Campos ok!";
+		$nome = Utils::sanitizar($_POST['nome']);
+		/* aqui no email ele pega os dois valores da função $valor e $tipoDeSanitizacao */
+		$email = Utils::sanitizar($_POST['email'], 'email');
+		$tipo = Utils::sanitizar($_POST['tipo']);
 	}
 
 }
-
-
 
 require_once "../includes/cabecalho-admin.php";
 
