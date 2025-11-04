@@ -26,6 +26,9 @@ class UsuarioServico {
         $consulta->bindValue(":tipo", $dadosDoUsuario->getTipo());
         
         $consulta->bindValue(":senha", $dadosDoUsuario->getSenha());
+
+        $consulta->execute();
+
         
     }
 }
