@@ -25,17 +25,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			/* aqui no email ele pega os dois valores da função $valor e $tipoDeSanitizacao */
 			$email = Utils::sanitizar($_POST['email'], 'email');
 			$tipo = Utils::sanitizar($_POST['tipo']);
-
+			
 			// Captuando e codificando (gerando um hash) da senha
 			$senha = Utils::codificarSenha($_POST['senha']);
-
+			
 			// Criando um objeto para um novo usuario com seus dados 
 			$novoUsuario = new Usuario($nome, $email, $senha, $tipo);
-
+			
 			// Utils::dump($novoUsuario);
-
+			
 			// Executar o serviço e passar os novos dados 
 			$usuarioServico->inserir($novoUsuario);
+			// die("aqui");
 
 			header("location:usuarios.php");
 			exit;
