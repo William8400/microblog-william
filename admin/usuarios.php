@@ -1,4 +1,23 @@
 <?php 
+require_once "../src/Database/Conecta.php";
+require_once "../src/Services/UsuarioServico.php";
+require_once "../src/Helpers/Utils.php";
+
+// Inicialização
+
+$erro = null;
+$usuarios = [];
+$usuariosServico = new UsuarioServico();
+
+try {
+	$usuarios = $usuariosServico->buscar();
+	Utils::dump($usuarios);
+} catch (Throwable $e) {
+	$erro = "Erro ao buscar usuários. <br>".$e->getMessage();
+}
+
+
+
 require_once "../includes/cabecalho-admin.php";
 
 ?>

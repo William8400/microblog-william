@@ -31,4 +31,13 @@ class UsuarioServico {
 
         
     }
+
+    // buscar (SELECT)
+
+    public function buscar():array { /* se o método não tem parâmetro podemos usar o query */
+        $sql = "SELECT * FROM usuarios ORDER BY nome";
+
+        $consulta = $this->conexao->query($sql);
+        return $consulta->fetchAll();
+    }
 }
