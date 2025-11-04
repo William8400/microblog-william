@@ -28,6 +28,10 @@ require_once "../includes/cabecalho-admin.php";
 		
 		<h2 class="text-center">Usuários <span class="badge bg-dark">X</span></h2>
 
+		<?php if ($erro): ?>
+			<p class="alert alert-danger text-center"> <?= $erro ?> </p>
+		<?php endif; ?>
+
 		<p class="text-center mt-5">
 			<a class="btn btn-primary" href="usuario-insere.php">
 			<i class="bi bi-plus-circle"></i>	
