@@ -11,7 +11,7 @@ $usuariosServico = new UsuarioServico();
 
 try {
 	$usuarios = $usuariosServico->buscar();
-	Utils::dump($usuarios);
+    // Utils::dump($usuarios);
 } catch (Throwable $e) {
 	$erro = "Erro ao buscar usuários. <br>".$e->getMessage();
 }
