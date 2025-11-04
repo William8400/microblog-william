@@ -41,4 +41,21 @@ class Usuario {
     private function setId(?int $valorId):void { 
         $this->id = $valorId;
     }
+
+    /* Métodos Getters (acesso a leitura) */
+    public function getNome():string {
+        return $this->nome;
+    }
+
+    public function getEmail():string {
+        return $this->email;
+    }
+
+    public function getTipo():string {
+        return $this->tipo;
+    }
+
+    public function getId():?int {
+        return $this->id;
+    }
 }
