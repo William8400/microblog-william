@@ -27,4 +27,4 @@ class Conecta {
     }
 }
 
-Conecta::getConexao();
+// Conecta::getConexao();

@@ -27,6 +27,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 		$novoUsuario = new Usuario($nome, $email, $senha, $tipo);
 
 	    // Utils::dump($novoUsuario);
+
+		
 	}
 
 }
