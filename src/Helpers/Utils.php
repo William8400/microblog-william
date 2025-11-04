@@ -31,4 +31,11 @@ class Utils {
         echo '</pre>';
     }
 
+    public static function redirecionarPara(string $pagina):void {
+        
+        header("location:".$pagina);
+		exit;
+        
+    }
+
 }

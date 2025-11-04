@@ -36,10 +36,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			
 			// Executar o serviço e passar os novos dados 
 			$usuarioServico->inserir($novoUsuario);
-			// die("aqui");
 
-			header("location:usuarios.php");
-			exit;
+			// Redirecionar para a página usuarios
+			Utils::redirecionarPara("usuarios.php");
 
 		} catch (Throwable $e) {
 			/* Se alguma ação dentro do try falhar o PHP vai lançar (usando a classe Throwable) um erro/execeção. Ao usar o parâmetro "e" (ou outro nome), temos acesso aos detalhes do que aconteceu. */
