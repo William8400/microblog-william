@@ -51,6 +51,10 @@ class Usuario {
         return $this->email;
     }
 
+    public function getSenha():string {
+        return $this->senha;
+    }
+
     public function getTipo():string {
         return $this->tipo;
     }

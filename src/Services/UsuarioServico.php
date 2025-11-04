@@ -19,7 +19,13 @@ class UsuarioServico {
         
         $consulta = $this->conexao->prepare($sql);
         
-        $consulta->bindValue(":nome");
+        $consulta->bindValue(":nome", $dadosDoUsuario->getNome());
+        
+        $consulta->bindValue(":email", $dadosDoUsuario->getEmail());
+        
+        $consulta->bindValue(":tipo", $dadosDoUsuario->getTipo());
+        
+        $consulta->bindValue(":senha", $dadosDoUsuario->getSenha());
         
     }
 }
