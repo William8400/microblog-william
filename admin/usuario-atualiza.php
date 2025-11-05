@@ -21,7 +21,16 @@ try {
 	$erro = "Erro ao buscar usuário. <br>" . $e->getMessage();
 }
 
+// Detectar se o formulário foi acionado para atualizar o usuário
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+	
+	if (empty($_POST['nome']) || empty($_POST['email']) || empty($_POST['tipo']) ) {
+		$erro = "Nome, e-mail e tipo são obrigatórios";
+	} else {
+		
+	}
+}
 
 require_once "../includes/cabecalho-admin.php";
 ?>
