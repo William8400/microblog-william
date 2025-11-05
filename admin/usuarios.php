@@ -52,7 +52,7 @@ require_once "../includes/cabecalho-admin.php";
 
 				<tbody>
 
-					<?php foreach ($usuarios as  $usuario) { ?>
+					<?php foreach ($usuarios as  $usuario): ?>
 
 
 						<tr>
@@ -73,7 +73,7 @@ require_once "../includes/cabecalho-admin.php";
 						</tr>
 
 
-					<?php } ?>
+					<?php endforeach; ?>
 
 
 
