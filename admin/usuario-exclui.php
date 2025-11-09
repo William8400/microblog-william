@@ -4,16 +4,31 @@ require_once "../src/Models/Usuario.php";
 require_once "../src/Services/UsuarioServico.php";
 require_once "../src/Helpers/Utils.php";
 
-
-$id = Utils::sanitizar($_GET['id'], 'inteiro');
+$id = Utils::sanitizar($_GET["id"], 'inteiro');
 
 if (!$id) Utils::redirecionarPara('usuarios.php');
 
-try {
+$usuarioServico = new UsuarioServico();
+
+$erro = null;
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	
-} catch (Throwable $e) {
-	
+	try {
+		$id = Utils::sanitizar($_POST['id'], 'int');
+
+		$excluirUsuario = new Usuario($nome, $email, $senha, $tipo, $id);
+
+		$usuario->getId($id);
+
+		$usuarioServico->excluirUsuario($usuario);
+
+		Utils::redirecionarPara('usuarios.php');
+	} catch (Throwable $e) {
+		$erro = "Erro ao excluir usuário. <br>" . $e->getMessage();
+	}
 }
+
 
 
 require_once "../includes/cabecalho-admin.php";
@@ -27,7 +42,7 @@ require_once "../includes/cabecalho-admin.php";
 			Excluir usuário
 		</h2>
 
-			
+
 
 	</article>
 </div>
