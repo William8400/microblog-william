@@ -1,5 +1,5 @@
 <?php 
-
+//src/Services/AutenticacaoServico
 class AutenticacaoServico {
     
     public static function iniciarSessao():void {
@@ -20,6 +20,21 @@ class AutenticacaoServico {
         if (!isset($_SESSION['id'])) {
             Utils::redirecionarPara("../login.php?acesso_proibido");
         }
+    }
+
+    public static function login(int $valorId, string $valorNome, string $valorTipo ):void {
+        AutenticacaoServico::iniciarSessao();
+
+        // Criando as variáveis de sessão com os dados informados
+
+        $_SESSION['id'] = $valorId;
+
+        $_SESSION['nome'] = $valorNome;
+
+        $_SESSION['tipo'] = $valorTipo;
+
+        // Após logar, vá para admin/index.php
+        Utils::redirecionarPara("admin/");
     }
 
 }
