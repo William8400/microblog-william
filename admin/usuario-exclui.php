@@ -11,14 +11,15 @@ $erro = null;
 
 $usuarioServico = new UsuarioServico();
 
-
+	// Tente....
 	try {
-		
+		// Executar o método de excluir passando o id de quem será excluído
 		$usuarioServico->excluirUsuario($id);
 
 	 // Utils::redirecionarPara('usuarios.php');
 
 	} catch (Throwable $e) {
+		// Deu ruim/erro? Dispare um erro e monte uma mensagem com os detalhes
 		$erro = "Erro ao excluir usuário. <br>" . $e->getMessage();
 	}
 
