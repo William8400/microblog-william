@@ -2,6 +2,8 @@
 require_once "../src/Database/Conecta.php";
 require_once "../src/Services/UsuarioServico.php";
 require_once "../src/Helpers/Utils.php";
+require_once "../src/Services/AutenticacaoServico.php";
+AutenticacaoServico::exijirLogin();
 
 // Inicialização
 
