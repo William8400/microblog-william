@@ -86,7 +86,7 @@ class UsuarioServico {
 
         $consulta = $this->conexao->prepare($sql);
 
-        $consulta->bindValue(":id", $id);
+        $consulta->bindValue(":id", $id, PDO::PARAM_INT);
 
         $consulta->execute();
     }
