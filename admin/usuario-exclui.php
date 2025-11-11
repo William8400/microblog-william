@@ -12,18 +12,18 @@ $erro = null;
 $usuarioServico = new UsuarioServico();
 $dadosDoUsuario = [];
 
-	// Tente....
-	try {
-		$dadosDoUsuario = $usuarioServico->buscarPorId($id);
-		// Executar o método de excluir passando o id de quem será excluído
-		$usuarioServico->excluirUsuario($id);
+// Tente....
+try {
+	$dadosDoUsuario = $usuarioServico->buscarPorId($id);
+	// Executar o método de excluir passando o id de quem será excluído
+	$usuarioServico->excluirUsuario($id);
 
-	 // Utils::redirecionarPara('usuarios.php');
+	// Utils::redirecionarPara('usuarios.php');
 
-	} catch (Throwable $e) {
-		// Deu ruim/erro? Dispare um erro e monte uma mensagem com os detalhes
-		$erro = "Erro ao excluir usuário. <br>" . $e->getMessage();
-	}
+} catch (Throwable $e) {
+	// Deu ruim/erro? Dispare um erro e monte uma mensagem com os detalhes
+	$erro = "Erro ao excluir usuário. <br>" . $e->getMessage();
+}
 
 
 require_once "../includes/cabecalho-admin.php";
@@ -40,14 +40,14 @@ require_once "../includes/cabecalho-admin.php";
 		<?php if ($erro): ?>
 			<p class="alert alert-danger text-center"> <?= $erro ?> </p>
 		<?php else: ?>
-		  <p class="alert alert-success text-center"> O usuário <?=$dadosDoUsuario['nome']?>Excluido com sucesso!<?=$erro?> </p>
+			<p class="alert alert-success text-center"> O usuário <?= $dadosDoUsuario['nome'] ?> foi excluido com sucesso! <?= $erro ?> </p>
 		<?php endif; ?>
 
 		<div class="text-center">
 			<a href="usuarios.php" class="btn btn-secondary">Voltar</a>
 		</div>
 
-</article>
+	</article>
 </div>
 
 
