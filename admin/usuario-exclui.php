@@ -17,7 +17,7 @@ $usuarioServico = new UsuarioServico();
 		
 		$usuarioServico->excluirUsuario($id);
 
-		Utils::redirecionarPara('usuarios.php');
+	 // Utils::redirecionarPara('usuarios.php');
 
 	} catch (Throwable $e) {
 		$erro = "Erro ao excluir usuário. <br>" . $e->getMessage();
@@ -38,8 +38,13 @@ require_once "../includes/cabecalho-admin.php";
 		<?php if ($erro): ?>
 			<p class="alert alert-danger text-center"> <?= $erro ?> </p>
 		<?php else: ?>
-		  <p>Excluido com sucesso!<?=$erro?> </p>
+		  <p class="alert alert-success text-center">Excluido com sucesso!<?=$erro?> </p>
 		<?php endif; ?>
+
+		<div class="text-center">
+			<a href="usuarios.php" class="btn btn-secondary">Voltar</a>
+		</div>
+
 </article>
 </div>
 
