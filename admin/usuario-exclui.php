@@ -38,7 +38,7 @@ require_once "../includes/cabecalho-admin.php";
 		<?php if ($erro): ?>
 			<p class="alert alert-danger text-center"> <?= $erro ?> </p>
 		<?php else: ?>
-		  <p>Excluido com sucesso!</p>
+		  <p>Excluido com sucesso!<?=$erro?> </p>
 		<?php endif; ?>
 </article>
 </div>
