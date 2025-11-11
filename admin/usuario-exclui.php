@@ -10,9 +10,11 @@ if (!$id) Utils::redirecionarPara('usuarios.php');
 $erro = null;
 
 $usuarioServico = new UsuarioServico();
+$dadosDoUsuario = [];
 
 	// Tente....
 	try {
+		$dadosDoUsuario = $usuarioServico->buscarPorId($id);
 		// Executar o método de excluir passando o id de quem será excluído
 		$usuarioServico->excluirUsuario($id);
 
@@ -38,7 +40,7 @@ require_once "../includes/cabecalho-admin.php";
 		<?php if ($erro): ?>
 			<p class="alert alert-danger text-center"> <?= $erro ?> </p>
 		<?php else: ?>
-		  <p class="alert alert-success text-center">Excluido com sucesso!<?=$erro?> </p>
+		  <p class="alert alert-success text-center"> O usuário <?=$dadosDoUsuario['nome']?>Excluido com sucesso!<?=$erro?> </p>
 		<?php endif; ?>
 
 		<div class="text-center">
