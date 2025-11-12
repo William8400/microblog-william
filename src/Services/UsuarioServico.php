@@ -90,4 +90,20 @@ class UsuarioServico {
 
         $consulta->execute();
     }
+
+    // buscarPorEmail (SELECT)
+    public function buscarPorEmail(string $valorEmail): ?array {
+
+        $sql = "SELECT * FROM usuarios WHERE email = :email";
+
+        $consulta = $this->conexao->prepare($sql);
+
+        $consulta->bindValue(":email", $valorEmail);
+
+        $consulta->execute();
+
+        return $consulta->fetch() ?: null;
+
+
+    }
 }
