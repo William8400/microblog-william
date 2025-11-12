@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once "src/Database/Conecta.php";
 require_once "src/Services/UsuarioServico.php";
 require_once "src/Helpers/Utils.php";
@@ -7,38 +7,33 @@ require_once "src/Services/AutenticacaoServico.php";
 $usuarioServico = new UsuarioServico();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
+
     if (empty($_POST['email']) || empty($_POST['senha'])) {
         Utils::redirecionarPara("login.php?campos_obrigatorios");
     } else {
-       // Captura e-mail e senha 
+        // Captura e-mail e senha 
         $email = Utils::sanitizar($_POST['email'], 'email');
 
-       // a senha não precisa sanitizar
+        // a senha não precisa sanitizar
         $senha = $_POST['senha'];
 
-       // Busca pelo usuário através do e-mail
+        // Busca pelo usuário através do e-mail
         $dadosDoUsuario = $usuarioServico->buscarPorEmail($email);
 
-       // Se não existir usuário/usuário inválido, redirecione para login
+        // Se não existir usuário/usuário inválido, redirecione para login
         if (!$dadosDoUsuario) {
             Utils::redirecionarPara("login.php?dados_incorretos");
         } else {
-            
+
             // Caso contrário: virifique a senha
-            if ( password_verify($senha, $dadosDoUsuario['senha'])) {
-                  // Estando correta, faça o login 
+            if (password_verify($senha, $dadosDoUsuario['senha'])) {
+                // Estando correta, faça o login 
                 echo "senha correta, pode entrar";
             } else {
-                  // Estando errada, mantenha em login.php 
+                // Estando errada, mantenha em login.php 
                 echo "senha errada!";
             }
-          
-            
-            
         }
-
-       
     }
 }
 
@@ -47,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 if (isset($_GET['acesso_proibido'])) {
     $mensagem = "Você deve logar primeiro";
-} else if(isset($_GET['campos_obrigatorios'])){
+} else if (isset($_GET['campos_obrigatorios'])) {
     $mensagem = "Preencha e-mail e senha";
 } else if (isset($_GET['dados_incorretos'])) {
     $mensagem = "Algo está errado!";
@@ -61,12 +56,12 @@ require_once "includes/cabecalho.php";
     <div class="bg-white rounded shadow col-12 my-1 py-4">
         <h2 class="text-center fw-light">Acesso à área administrativa</h2>
 
-        <?php if(isset($mensagem)):?>
+        <?php if (isset($mensagem)): ?>
             <p class="alert alert-warning text-center my-2"><?= $mensagem ?></p>
-        <?php endif;?>
+        <?php endif; ?>
 
         <form action="" method="post" id="form-login" name="form-login" class="mx-auto w-50" autocomplete="off">
-			
+
 
             <div class="mb-3">
                 <label for="email" class="form-label">E-mail:</label>
@@ -82,6 +77,6 @@ require_once "includes/cabecalho.php";
     </div>
 </div>
 
-<?php 
+<?php
 require_once "includes/rodape.php";
 ?>
