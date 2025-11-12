@@ -5,6 +5,7 @@ require_once "../src/Helpers/Utils.php";
 require_once "../src/Services/AutenticacaoServico.php";
 
 AutenticacaoServico::exijirLogin();
+AutenticacaoServico::exigirAdmin();
 
 $id = Utils::sanitizar($_GET["id"], 'inteiro');
 
