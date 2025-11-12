@@ -1,5 +1,19 @@
 <?php 
-require_once "includes/cabecalho.php";
+require_once "src/Database/Conecta.php";
+require_once "src/Services/UsuarioServico.php";
+require_once "src/Helpers/Utils.php";
+require_once "src/Services/AutenticacaoServico.php";
+
+$usuarioServico = new UsuarioServico();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (empty($_POST['email']) || empty($_POST['senha'])) {
+        Utils::redirecionarPara("login.php?campos_obrigatorios");
+    } else {
+        echo "Tudo preenchido!";
+    }
+}
+
 
 /* Mensagens do processo de login/logout */
 
@@ -7,6 +21,8 @@ if (isset($_GET['acesso_proibido'])) {
     $mensagem = "Você deve logar primeiro";
 }
 
+
+require_once "includes/cabecalho.php";
 ?>
 
 <div class="row">
