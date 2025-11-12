@@ -7,6 +7,7 @@ require_once "src/Services/AutenticacaoServico.php";
 $usuarioServico = new UsuarioServico();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    
     if (empty($_POST['email']) || empty($_POST['senha'])) {
         Utils::redirecionarPara("login.php?campos_obrigatorios");
     } else {
@@ -23,12 +24,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (!$dadosDoUsuario) {
             Utils::redirecionarPara("login.php?dados_incorretos");
         } else {
-            echo "Opa, encontrou!";
+            
+            // Caso contrário: virifique a senha
+            if ( password_verify($senha, $dadosDoUsuario['senha'])) {
+                  // Estando correta, faça o login 
+                echo "senha correta, pode entrar";
+            } else {
+                  // Estando errada, mantenha em login.php 
+                echo "senha errada!";
+            }
+          
+            
+            
         }
 
-       // Caso contrário: virifique a senha
-       // Estando correta, faça o login 
-       // Estando errada, mantenha em login.php 
+       
     }
 }
 
