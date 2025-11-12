@@ -102,6 +102,10 @@ class UsuarioServico {
 
         $consulta->execute();
 
+
+        /* O return é TRUE? Então retorne os dados como array (fetch)
+        Senão, retorne null
+        */
         return $consulta->fetch() ?: null;
 
 
