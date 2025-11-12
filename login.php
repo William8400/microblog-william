@@ -13,13 +13,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
        // Captura e-mail e senha 
         $email = Utils::sanitizar($_POST['email'], 'email');
 
-        // a senha não precisa sanitizar
+       // a senha não precisa sanitizar
         $senha = $_POST['senha'];
 
        // Busca pelo usuário através do e-mail
-       $usuarioServico->buscarPorEmail($email);
+        $dadosDoUsuario = $usuarioServico->buscarPorEmail($email);
 
        // Se não existir usuário/usuário inválido, redirecione para login
+        if (!$dadosDoUsuario) {
+            Utils::redirecionarPara("login.php?dados_incorretos");
+        } else {
+            echo "Opa, encontrou!";
+        }
 
        // Caso contrário: virifique a senha
        // Estando correta, faça o login 
@@ -34,6 +39,8 @@ if (isset($_GET['acesso_proibido'])) {
     $mensagem = "Você deve logar primeiro";
 } else if(isset($_GET['campos_obrigatorios'])){
     $mensagem = "Preencha e-mail e senha";
+} else if (isset($_GET['dados_incorretos'])) {
+    $mensagem = "Algo está errado!";
 }
 
 
