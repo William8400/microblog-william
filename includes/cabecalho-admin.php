@@ -51,11 +51,13 @@ if (isset($_GET['sair'])) {
                         </li>
 
 
-                       
+                       <?php if ($_SESSION['tipo'] == 'admin'): ?>
+                        
                         <li class="nav-item">
                             <a class="nav-link" href="usuarios.php">Usuários</a>
                         </li>
-
+                          
+                        <?php endif; ?>
 
                         <li class="nav-item">
                             <a class="nav-link" href="../index.php" target="_blank">Área pública</a>
