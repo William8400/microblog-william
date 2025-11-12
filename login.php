@@ -46,6 +46,8 @@ if (isset($_GET['acesso_proibido'])) {
     $mensagem = "Preencha e-mail e senha";
 } else if (isset($_GET['dados_incorretos'])) {
     $mensagem = "Algo está errado!";
+} else if (isset($_GET['saiu'])) {
+    $mensagem = "Você saiu do sistema";
 }
 
 
