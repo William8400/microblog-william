@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $senha = $_POST['senha'];
 
        // Busca pelo usuário através do e-mail
-       $usuarioServico->BuscarPorEmail($email);
+       $usuarioServico->buscarPorEmail($email);
 
        // Se não existir usuário/usuário inválido, redirecione para login
 
