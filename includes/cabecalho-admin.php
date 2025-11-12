@@ -62,6 +62,7 @@ if (isset($_GET['sair'])) {
                         <li class="nav-item">
                             <a class="nav-link" href="../index.php" target="_blank">Área pública</a>
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link fw-bold"
                             href="?sair"> <i class="bi bi-x-circle"></i> Sair</a>
