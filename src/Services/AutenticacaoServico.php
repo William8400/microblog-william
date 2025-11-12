@@ -43,7 +43,7 @@ class AutenticacaoServico {
 
         session_destroy();
 
-        Utils::redirecionarPara("../login.php?saiu");
+        Utils::redirecionarPara("../login.php?você-saiu");
     }
 
 }
