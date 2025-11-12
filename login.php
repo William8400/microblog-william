@@ -19,6 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 if (isset($_GET['acesso_proibido'])) {
     $mensagem = "Você deve logar primeiro";
+} else if(isset($_GET['campos_obrigatorios'])){
+    $mensagem = "Preencha e-mail e senha";
 }
 
 
