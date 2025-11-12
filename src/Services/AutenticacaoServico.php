@@ -46,4 +46,14 @@ class AutenticacaoServico {
         Utils::redirecionarPara("../login.php?você-saiu");
     }
 
+    public static function exigirAdmin():void {
+        
+        AutenticacaoServico::iniciarSessao();
+
+        if ($_SESSION['tipo'] !== 'admin') {
+            Utils::redirecionarPara("nao-autorizado.php");
+        }
+        
+    }
+
 }
