@@ -40,7 +40,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			// Executar o serviço para atualizar
 			$usuarioServico->atualizar($usuario);
 
-			Utils::redirecionarPara("usuarios.php");
+			// Forçando a atualização da variável de sessão
+			$_SESSION['nome'] = $nome;
+
+			//Redireciona para a lista de usuários
+			Utils::redirecionarPara("index.php");
 		
 		} catch (Throwable $e) {
 			$erro = "Erro ao editar usuário. <br>".$e->getMessage();
