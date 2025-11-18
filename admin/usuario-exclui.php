@@ -16,18 +16,26 @@ $erro = null;
 $usuarioServico = new UsuarioServico();
 $dadosDoUsuario = [];
 
-// Tente....
-try {
-	$dadosDoUsuario = $usuarioServico->buscarPorId($id);
-	// Executar o método de excluir passando o id de quem será excluído
-	$usuarioServico->excluirUsuario($id);
+/* Se o id passado via URL for o mesmo id do usuário que está logado */
+if ($id === $_SESSION['id']) {
+	// Netse caso, nbão vamos possibilitar a exclusão e vamos avisar o usuário
+	$erro = "Você não pode excluir seu próprio usuário!";
+} else {
+	// Caso contrário, siga em frente  (carregue os dados exclua)
+	try {
+		$dadosDoUsuario = $usuarioServico->buscarPorId($id);
+		// Executar o método de excluir passando o id de quem será excluído
+		$usuarioServico->excluirUsuario($id);
 
-	// Utils::redirecionarPara('usuarios.php');
+		// Utils::redirecionarPara('usuarios.php');
 
-} catch (Throwable $e) {
-	// Deu ruim/erro? Dispare um erro e monte uma mensagem com os detalhes
-	$erro = "Erro ao excluir usuário. <br>" . $e->getMessage();
+	} catch (Throwable $e) {
+		// Deu ruim/erro? Dispare um erro e monte uma mensagem com os detalhes
+		$erro = "Erro ao excluir usuário. <br>" . $e->getMessage();
+	}
+
 }
+
 
 
 require_once "../includes/cabecalho-admin.php";
