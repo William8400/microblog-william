@@ -18,6 +18,35 @@ try {
 	$erro = "Erro ao buscar usuário. <br>" . $e->getMessage();
 }
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+	
+	if (empty($_POST['nome']) || empty($_POST['email'])) {
+		$erro = "Nome, e-mail e são obrigatórios";
+	} else {
+		try {
+			
+			$nome = Utils::sanitizar($_POST['nome']);
+			$email = Utils::sanitizar($_POST['email'], 'email');
+
+			/* SE o campo senha estiver vazio, manter a senha existente.
+			Caso contrário, verifique as senhas (digitada no form e a do banco)
+			*/
+
+			$senha = empty($_POST['senha']) ? $dados['senha'] : Utils::verificarSenha($_POST['senha'], $dados['senha']); 
+
+			// Montando um objeto com os dados do meu perfil (pessoa logada) que será atualizado
+			$usuario = new Usuario($nome, $email, $senha, $_SESSION['tipo'], $_SESSION['id']);
+
+			// Executar o serviço para atualizar
+			$usuarioServico->atualizar($usuario);
+
+			Utils::redirecionarPara("usuarios.php");
+		
+		} catch (Throwable $e) {
+			$erro = "Erro ao editar usuário. <br>".$e->getMessage();
+		}
+	}
+}
 
 require_once "../includes/cabecalho-admin.php";
 
