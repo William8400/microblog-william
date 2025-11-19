@@ -1,7 +1,7 @@
 <?php
 require_once "../src/Database/Conecta.php";
 require_once "../src/Models/Noticia.php";
-require_once "src/Services/NoticiaServico.php";
+require_once "../src/Services/NoticiaServico.php";
 require_once "../src/Helpers/Utils.php";
 require_once "../src/Services/AutenticacaoServico.php";
 AutenticacaoServico::exijirLogin();
@@ -9,6 +9,18 @@ AutenticacaoServico::exijirLogin();
 
 $erro = null;
 $noticiaServico = new NoticiaServico();
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+	
+	if ( empty($_POST['titulo']) || empty($_POST['resumo']) || 
+		 empty($_POST['imagem']) || empty($_POST['resumo'])) {
+		
+		$erro = "Preecha todos os campos!";
+	
+	} else {
+		
+	}
+}
 
 
 
@@ -25,6 +37,10 @@ require_once "../includes/cabecalho-admin.php";
 		<h2 class="text-center">
 			Inserir nova notícia
 		</h2>
+
+		<?php if ($erro): ?>
+			<p class="alert alert-danger text-center"> <?= $erro ?> </p>
+		<?php endif; ?>
 
 		<!-- Obs: é obrigatório colocar o atributo enctype com o valor multipart/form-data para que o seu formulário ACEITE/PERMITA o envio de ARQUIVOS. -->
 		<form class="mx-auto w-75" action="" method="post" id="form-inserir" name="form-inserir" autocomplete="off" enctype="multipart/form-data">
