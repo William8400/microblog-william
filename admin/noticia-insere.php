@@ -13,12 +13,24 @@ $noticiaServico = new NoticiaServico();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	
 	if ( empty($_POST['titulo']) || empty($_POST['resumo']) || 
-		 empty($_POST['imagem']) || empty($_POST['resumo'])) {
+		 empty($_FILES['imagem']) || empty($_POST['resumo'])) {
 		
 		$erro = "Preecha todos os campos!";
 	
 	} else {
-		
+		try {
+			
+			$titulo = Utils::sanitizar($_POST['titulo']);
+			$resumo = Utils::sanitizar($_POST['resumo']);
+			$texto = Utils::sanitizar($_POST['texto']);
+
+			// Capturando o arquivo enviado pelo input file no HTML
+			$arquivo = $_FILES['imagem'];
+			Utils::dump($arquivo);
+
+		} catch (Throwable $e) {
+			$erro = "Erro ao inserir noticia. <br>".$e->getMessage();
+		}
 	}
 }
 
