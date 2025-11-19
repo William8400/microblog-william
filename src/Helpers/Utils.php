@@ -53,6 +53,10 @@ class Utils {
         
     }
 
+    public static function formatardata(string $valorData):string {
+        return date("d/m/Y H:i", strtotime($valorData));
+    }
+
 
 
 }
