@@ -41,6 +41,10 @@ require_once "../includes/cabecalho-admin.php";
             Atualizar dados da notícia
         </h2>
 
+        	<?php if ($erro): ?>
+			<p class="alert alert-danger text-center"> <?= $erro ?> </p>
+		    <?php endif; ?>
+
         <form class="mx-auto w-75" action="" method="post" id="form-atualizar" name="form-atualizar" autocomplete="off">
             <input type="hidden" name="id" value="id da notícia...">
 
