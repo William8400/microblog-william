@@ -1,10 +1,36 @@
 <?php
+require_once "../src/Database/Conecta.php";
+require_once "../src/Models/Noticia.php";
+require_once "../src/Services/NoticiaServico.php";
 require_once "../src/Helpers/Utils.php";
 require_once "../src/Services/AutenticacaoServico.php";
 AutenticacaoServico::exijirLogin();
 
-require_once "../includes/cabecalho-admin.php";
+$erro= null;
+$noticiaServico = new NoticiaServico();
 
+$id = Utils::sanitizar($_GET['id'], 'inteiro');
+
+if (!$id) Utils::redirecionarPara("noticias.php");
+
+try {
+    
+    $dados = $noticiaServico->buscarPorId($id, $_SESSION['tipo'], $_SESSION['id']);
+    if (!$dados) $erro = "Notícia não encontrada";
+    Utils::dump($dados); 
+        
+    
+} catch (Throwable $e) {
+    $erro = "Erro ao buscar dados da noticia.<br>".$e->getMessage();
+}
+    
+
+
+
+
+
+
+require_once "../includes/cabecalho-admin.php";
 ?>
 
 
