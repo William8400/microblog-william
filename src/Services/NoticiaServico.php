@@ -10,9 +10,11 @@ class NoticiaServico {
     }
 
     // Versão Básica (provisória)
-    public function buscar():array {
+    public function buscar(string $tipoUsuario, int $idUsuario):array {
         
-        $sql = "SELECT 
+        if ($tipoUsuario === 'admin') {
+            
+            $sql = "SELECT 
                    noticias.id,
                    noticias.titulo,
                    noticias.data,
@@ -22,8 +24,22 @@ class NoticiaServico {
                 ON  noticias.usuario_id = usuarios.id
                 
                 ORDER BY data DESC";
+        } else {
+            $sql = "SELECT id, titulo, data FROM noticias
+                    WHERE usuario_id = :usuario_id
+                    ORDER BY data DESC         
+            
+            ";
+        }
+        
 
-        $consulta = $this->conexao->query($sql);
+        $consulta = $this->conexao->prepare($sql);
+
+        if ($tipoUsuario !== 'admin') {
+            $consulta->bindValue(":usuario_id", $idUsuario);
+        }
+
+        $consulta->execute();
 
         return $consulta->fetchAll();
         

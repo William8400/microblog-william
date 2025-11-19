@@ -10,7 +10,7 @@ $noticias = [];
 $noticiaServico = new NoticiaServico();
 
 try {
-	$noticias = $noticiaServico->buscar();
+	$noticias = $noticiaServico->buscar($_SESSION['tipo'], $_SESSION['id']);
 } catch (Throwable $e) {
 	$erro = "Erro ao buscar notícias. <br>" . $e->getMessage();
 }
@@ -42,8 +42,11 @@ require_once "../includes/cabecalho-admin.php";
 					<tr>
 						<th>Título</th>
 						<th>Data</th>
+						
+						<?php if ($_SESSION['tipo'] === 'admin'): ?>
 						<th>Autor</th>
-
+						<?php endif; ?>
+					
 						<th class="text-center" colspan="2">Operações</th>
 					</tr>
 				</thead>
@@ -54,8 +57,9 @@ require_once "../includes/cabecalho-admin.php";
 					<tr>
 						<td> <?= $noticia['titulo'] ?> </td>
 						<td> <?= Utils::formatardata($noticia['data']) ?> </td>
+						<?php if ($_SESSION['tipo'] === 'admin'): ?>
 						<td> <?= $noticia['autor'] ?> </td>
-
+						<?php endif; ?>
 
 						<td class="text-center">
 							<a class="btn btn-warning"
