@@ -133,9 +133,28 @@ class NoticiaServico {
         }
        
         $consulta->execute();
-        
-
-
     }
+
+    public function excluir(int $idNoticia, int $idUsuario, string $tipoUsuario):void {
+        if ($tipoUsuario === 'admin') {
+            $sql = "DELETE FROM noticias WHERE id = :id";
+          
+        } else {
+            $sql = "DELETE FROM noticias WHERE id = :id AND usuario_id =
+            :usuario_id";            
+        }
+
+        $consulta = $this->conexao->prepare($sql);
+
+        $consulta->bindValue(":id", $idNoticia);
+
+        if ($tipoUsuario !== 'admin'){
+             
+            $consulta->bindValue(":usuario_id", $idUsuario);
+
+        }
+
+
+    } 
 
 }
