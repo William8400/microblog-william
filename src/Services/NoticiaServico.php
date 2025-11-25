@@ -87,7 +87,7 @@ class NoticiaServico {
 
         if ($tipoUsuario !== 'admin') {
             // fica dentro do if pq é usado apenas no sql do editor 
-             $consulta->bindValue(":usuario_id", $IdNoticia);
+             $consulta->bindValue(":usuario_id", $idUsuario);
         }
 
         $consulta->execute();

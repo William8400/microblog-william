@@ -58,13 +58,13 @@ require_once "../includes/cabecalho-admin.php";
             <div class="mb-3">
                 <label class="form-label" for="resumo">Resumo (máximo de 300 caracteres):</label>
                 <span id="maximo" class="badge bg-danger">0</span>
-                <textarea class="form-control" name="resumo" id="resumo" cols="50" rows="2" maxlength="300">resumo da notícia...</textarea>
+                <textarea class="form-control" name="resumo" id="resumo" cols="50" rows="2" maxlength="300"><?= $dados['resumo'] ?></textarea>
             </div>
 
             <div class="mb-3">
                 <label for="imagem-existente" class="form-label">Imagem da notícia:</label>
                 <!-- campo somente leitura, meramente informativo -->
-                <input value="imagem da notícia..." class="form-control" type="text" id="imagem-existente" name="imagem-existente" readonly>
+                <input value="<?= $dados['imagem'] ?>" class="form-control" type="text" id="imagem-existente" name="imagem-existente" readonly>
             </div>
 
             <div class="mb-3">
