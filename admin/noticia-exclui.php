@@ -32,6 +32,16 @@ require_once "../includes/cabecalho-admin.php";
 			Excluir notícia
 		</h2>
 
+		<?php if ($erro): ?>
+			<p class="alert alert-danger text-center"> <?= $erro ?> </p>
+		<?php else: ?>
+			<p class="alert alert-success text-center"> A Noticia foi excluida com sucesso!  </p>
+		<?php endif; ?>
+
+		<div class="text-center">
+			<a href="noticias.php" class="btn btn-secondary">Voltar</a>
+		</div>
+
 			
 
 	</article>

@@ -94,6 +94,7 @@ require_once "../includes/cabecalho-admin.php";
 
             <div class="mb-3">
                 <label class="form-label" for="resumo">Resumo (máximo de 300 caracteres):</label>
+                
                 <span id="maximo" class="badge bg-danger">0</span>
                 <textarea class="form-control" name="resumo" id="resumo" cols="50" rows="2" maxlength="300"><?= $dados['resumo'] ?></textarea>
             </div>
@@ -115,7 +116,7 @@ require_once "../includes/cabecalho-admin.php";
     </article>
 </div>
 
-
+<script src="../js/contagem.js"></script>
 <?php
 require_once "../includes/rodape-admin.php";
 ?>
