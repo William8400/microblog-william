@@ -21,7 +21,43 @@ try {
     $erro = "Erro ao buscar dados da noticia.<br>" . $e->getMessage();
 }
 
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+	
+	if ( empty($_POST['titulo']) || empty($_POST['resumo']) || empty($_POST['texto'])) {
+		
+		$erro = "Preecha todos os campos!";
+	
+	} else {
+		try {
+			
+			$titulo = Utils::sanitizar($_POST['titulo']);
+			$resumo = Utils::sanitizar($_POST['resumo']);
+			$texto = Utils::sanitizar($_POST['texto']);
+            $arquivo = $_FILES['imagem'];
 
+            /* Se o usuário enviar uma NOVA imagem e se não tem erro no envio */
+            if (!empty($arquivo) && $arquivo['error'] === UPLOAD_ERR_OK) {
+                // vamos fazer um novo upload 
+                Utils::upload($arquivo);
+
+                // Aproveitamos para pegar APENAS o nome e extensão do novo arquivo 
+                $imagem = $arquivo['name'];
+            } else {
+                // Caso contrário, vamos manter a imagem que existe
+                $imagem = $dados['imagem'];
+            }
+            
+            $noticia = new Noticia($titulo, $texto, $resumo, $imagem, $_SESSION['id']);
+
+			$noticiaServico->inserir($noticia);
+
+			Utils::redirecionarPara("noticias.php");
+
+		} catch (Throwable $e) {
+			$erro = "Erro ao inserir noticia. <br>".$e->getMessage();
+		}
+	}
+}
 
 
 
