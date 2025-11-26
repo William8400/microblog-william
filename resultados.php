@@ -1,14 +1,32 @@
 <?php
+require_once "src/Database/Conecta.php";
+require_once "src/Services/NoticiaServico.php";
+require_once "src/Helpers/Utils.php";
+$erro = null;
+$noticiaServico = new NoticiaServico();
+
+// Obter o valor que foi digitado no campo de busca 
+$termo = Utils::sanitizar($_GET['busca']);
+
+try {
+    $dados = $noticiaServico->buscarNoticias($termo);
+    Utils::dump($dados);
+} catch (Throwable $e) {
+    $erro = "Erro ao fazer a busca no sistema.<br>".$e->getMessage();
+}
 
 require_once "includes/cabecalho.php";
 ?>
-
+        <?php if ($erro): ?>
+			<p class="alert alert-danger text-center"> <?= $erro ?> </p>
+		<?php endif; ?>
 <div class="row my-1 mx-md-n1">
     <h2 class="col-12 fs-5 fw-light">
         Você procurou por 
         <span class="badge bg-dark"> termo digitado... </span> e
         obteve <span class="badge bg-info">  X </span> resultados
     </h2>
+
     
 
     <div class="col-12 my-1">
