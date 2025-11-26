@@ -32,20 +32,20 @@ require_once "includes/cabecalho.php";
     <p class="alert alert-warning text-center">Nenhum resultado encontrado</p>
     <?php endif; ?>
 
-<?php foreach ($dados as $dado): ?>
+<?php foreach ($dados as $noticia): ?>
     
     <div class="col-12 my-1">
         <article class="card">
             <div class="card-body">
                 <h3 class="fs-4 card-title fw-light">
-                    <?= $dado['titulo'] ?>
+                    <?= $noticia['titulo'] ?>
                 </h3>
                 <p class="card-text">
-                    <time><?= Utils::formatardata($dado['data']) ?></time> - 
-                    <?= $dado['resumo'] ?>
+                    <time><?= Utils::formatardata($noticia['data']) ?></time> - 
+                    <?= $noticia['resumo'] ?>
                 </p>
                 
-                <a href="noticia.php?id=<?= $dado['id'] ?>" 
+                <a href="noticia.php?id=<?= $noticia['id'] ?>" 
                 class="btn btn-primary btn-sm">Continuar lendo</a>
             </div>           
         </article>
