@@ -16,4 +16,5 @@
     color: black;
 }
 
+/* Quebra de linha através de CSS */
 .ajusta-texto { white-space: pre-wrap; }
