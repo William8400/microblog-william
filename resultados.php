@@ -28,7 +28,7 @@ require_once "includes/cabecalho.php";
         obteve <span class="badge bg-info"> <?= $tamanho ?> </span> resultados
     </h2>
     
-    <?php if (count($dados) === 0): ?>
+    <?php if ($tamanho === 0): ?>
     <p class="alert alert-warning text-center">Nenhum resultado encontrado</p>
     <?php endif; ?>
 
