@@ -11,50 +11,50 @@ $termo = Utils::sanitizar($_GET['busca']);
 try {
     $dados = $noticiaServico->buscarNoticias($termo);
 } catch (Throwable $e) {
-    $erro = "Erro ao fazer a busca no sistema.<br>".$e->getMessage();
+    $erro = "Erro ao fazer a busca no sistema.<br>" . $e->getMessage();
 }
 
 $tamanho = count($dados);
 
 require_once "includes/cabecalho.php";
 ?>
-        <?php if ($erro): ?>
-			<p class="alert alert-danger text-center"> <?= $erro ?> </p>
-		<?php endif; ?>
+<?php if ($erro): ?>
+    <p class="alert alert-danger text-center"> <?= $erro ?> </p>
+<?php endif; ?>
 <div class="row my-1 mx-md-n1">
     <h2 class="col-12 fs-5 fw-light">
-        Você procurou por 
+        Você procurou por
         <span class="badge bg-dark"> <?= $termo ?> </span> e
         obteve <span class="badge bg-info"> <?= $tamanho ?> </span> resultados
     </h2>
-    
+
     <?php if ($tamanho === 0): ?>
-    <p class="alert alert-warning text-center">Nenhum resultado encontrado</p>
+        <p class="alert alert-warning text-center">Nenhum resultado encontrado</p>
     <?php endif; ?>
 
-<?php foreach ($dados as $noticia): ?>
-    
-    <div class="col-12 my-1">
-        <article class="card">
-            <div class="card-body">
-                <h3 class="fs-4 card-title fw-light">
-                    <?= $noticia['titulo'] ?>
-                </h3>
-                <p class="card-text">
-                    <time><?= Utils::formatardata($noticia['data']) ?></time> - 
-                    <?= $noticia['resumo'] ?>
-                </p>
-                
-                <a href="noticia.php?id=<?= $noticia['id'] ?>" 
-                class="btn btn-primary btn-sm">Continuar lendo</a>
-            </div>           
-        </article>
-  
-    </div>
+    <?php foreach ($dados as $noticia): ?>
 
-<?php endforeach; ?>
+        <div class="col-12 my-1">
+            <article class="card">
+                <div class="card-body">
+                    <h3 class="fs-4 card-title fw-light">
+                        <?= $noticia['titulo'] ?>
+                    </h3>
+                    <p class="card-text">
+                        <time><?= Utils::formatardata($noticia['data']) ?></time> -
+                        <?= $noticia['resumo'] ?>
+                    </p>
 
-</div>     
+                    <a href="noticia.php?id=<?= $noticia['id'] ?>"
+                        class="btn btn-primary btn-sm">Continuar lendo</a>
+                </div>
+            </article>
+
+        </div>
+
+    <?php endforeach; ?>
+
+</div>
 
 
 <?php
